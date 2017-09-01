@@ -43,7 +43,8 @@ const entitiesReducer = (state = entitiesDefaultState, action) => {
 const pagesDefaultState = {
   dashboard: {
     boxOfficeList: [],
-    actionList: []
+    actionList: [],
+    searchedList: []
   },
   moviePage: {}
 }
@@ -68,6 +69,14 @@ const pagesReducer = (state = pagesDefaultState, action) => {
         dashboard: {
           ...state.dashboard,
           actionList: idPlease(action.movies)
+        }
+      }
+    case 'ADD_TO_SEARCHED_LIST':
+      return {
+        ...state,
+        dashboard: {
+          ...state.dashboard,
+          searchedList: action.arr,
         }
       }
     default:

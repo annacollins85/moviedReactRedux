@@ -22,6 +22,7 @@ class MovieListItem extends Component {
   render() {
     let style = {'opacity': '1'};
     if (this.props.seen) style = {'opacity': '0.5'};
+    console.log(this.props.img);
     return (
       <div className="MovieListItem">
         <Link to={`/movie/${this.props.id}`}><img onClick={this.goToSinglePlage} style={style} src={this.props.img} id={this.props.id}/></Link>

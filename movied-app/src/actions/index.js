@@ -12,3 +12,8 @@ export const seenMovie = (id) => ({
   type: 'SEEN_MOVIE',
   id
 })
+
+export const addToSearchedList = (arr) => ({
+  type: 'ADD_TO_SEARCHED_LIST',
+  arr
+})

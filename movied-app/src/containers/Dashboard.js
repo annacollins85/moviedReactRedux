@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addDiscoverMovies, addCategoryMovies, seenMovie } from '../actions'
 import MovieList from '../components/MovieList';
+import SearchList from '../components/SearchMovieList';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -53,9 +54,20 @@ class Dashboard extends Component {
     this.props.seenMovie(id);
   }
 
+  createSearchList = () => {
+    if (this.props.searchedList.length < 2) return null;
+    return <SearchList
+    listType="SEARCH RESULTS"
+    movies={this.props.searchedList}
+    />;
+  }
+
   render() {
+    const searchResults = this.createSearchList();
+    console.log(searchResults);
     return (
       <div className="Dashboard">
+        {searchResults}
         <MovieList
           listType="BOX OFFICE"
           list={this.props.boxOfficeList}
@@ -77,8 +89,7 @@ const mapStateToProps = (state) => ({
     movies: state.entities.movies,
     boxOfficeList: state.pages.dashboard.boxOfficeList,
     actionList: state.pages.dashboard.actionList,
-    // searched: state.movieLists.searched,
-    // selectedMovie: state.selectedMovie,
+    searchedList: state.pages.dashboard.searchedList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
