@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addDiscoverMovies, addCategoryMovies } from '../actions'
+import { addDiscoverMovies, addCategoryMovies, seenMovie } from '../actions'
 import MovieList from '../components/MovieList';
 
 class Dashboard extends Component {
@@ -44,10 +44,13 @@ class Dashboard extends Component {
   }
 
   mapMovies = (movieIdArr) => {
-    console.log('in map movies');
     return movieIdArr.map(id => {
       return this.props.movies[id]
     })
+  }
+
+  seenMovie = (id) => {
+    this.props.seenMovie(id);
   }
 
   render() {
@@ -57,11 +60,13 @@ class Dashboard extends Component {
           listType="BOX OFFICE"
           list={this.props.boxOfficeList}
           movies={this.mapMovies(this.props.boxOfficeList)}
+          onSeen={this.seenMovie}
           />
         <MovieList
           listType="ACTION MOVIES"
           list={this.props.actionList}
           movies={this.mapMovies(this.props.actionList)}
+          onSeen={this.seenMovie}
           />
       </div>
     );
@@ -79,6 +84,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   addDiscoverMovies: (data) => dispatch(addDiscoverMovies(data)),
   addCategoryMovies: (data) => dispatch(addCategoryMovies(data)),
+  seenMovie: (id) => dispatch(seenMovie(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

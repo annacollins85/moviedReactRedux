@@ -7,3 +7,8 @@ export const addCategoryMovies = (movies) => ({
   type: 'ADD_CATEGORY_MOVIES',
   movies
 })
+
+export const seenMovie = (id) => ({
+  type: 'SEEN_MOVIE',
+  id
+})

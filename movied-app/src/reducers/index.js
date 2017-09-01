@@ -23,6 +23,17 @@ const entitiesReducer = (state = entitiesDefaultState, action) => {
             ...objectifyArray(action.movies)
           }
         }
+    case 'SEEN_MOVIE':
+      return {
+        ...state,
+        movies: {
+          ...state.movies,
+          [action.id]: {
+            ...state.movies[action.id],
+            seen: true
+          }
+        }
+      }
     default:
       return state;
   }
