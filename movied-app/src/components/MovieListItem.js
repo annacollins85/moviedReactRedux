@@ -24,11 +24,13 @@ class MovieListItem extends Component {
     if (this.props.seen) style = {'opacity': '0.5'};
     return (
       <div className="MovieListItem">
-       <img onClick={this.goToSinglePlage} style={style} src={this.props.img} id={this.props.id}/>
-       {this.renderButton()}
+        <Link to={`/movie/${this.props.id}`}><img onClick={this.goToSinglePlage} style={style} src={this.props.img} id={this.props.id}/></Link>
+        {this.renderButton()}
       </div>
     );
   }
 }
+
+
 
 export default MovieListItem;

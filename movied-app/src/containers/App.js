@@ -25,7 +25,7 @@ class App extends Component {
           <div className="App">
             <NavBar/>
             <Route exact path="/" component={Dashboard}/>
-            <Route path="/:id" component={SingleMoviePage}/>
+            <Route path="/movie/:id" component={SingleMoviePage}/>
           </div>
         </MuiThemeProvider>
       </Router>
