@@ -10,8 +10,6 @@ class SingleMoviePage extends Component {
   }
 }
 
-export default SingleMoviePage;
-
 const mapStateToProps = (state) => ({
     movies: state.entities.movies
 });

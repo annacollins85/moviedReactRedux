@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
+// Routing
+import { Link } from 'react-router-dom';
+
 class MovieListItem extends Component {
 
   renderButton () {
