@@ -4,6 +4,7 @@ class MovieListItem extends Component {
   render() {
     return (
       <div className="MovieListItem">
+       <img src={this.props.img}/>
       </div>
     );
   }

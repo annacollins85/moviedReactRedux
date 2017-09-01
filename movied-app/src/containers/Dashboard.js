@@ -43,16 +43,26 @@ class Dashboard extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+  mapMovies = (movieIdArr) => {
+    console.log('in map movies');
+    return movieIdArr.map(id => {
+      return this.props.movies[id]
+    })
   }
 
   render() {
-    console.log(this.props.boxOfficeList);
     return (
       <div className="Dashboard">
-        <MovieList/>
-        <MovieList/>
+        <MovieList
+          listType="BOX OFFICE"
+          list={this.props.boxOfficeList}
+          movies={this.mapMovies(this.props.boxOfficeList)}
+          />
+        <MovieList
+          listType="ACTION MOVIES"
+          list={this.props.actionList}
+          movies={this.mapMovies(this.props.actionList)}
+          />
       </div>
     );
   }
@@ -61,7 +71,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => ({
     movies: state.entities.movies,
     boxOfficeList: state.pages.dashboard.boxOfficeList,
-    // list2: state.movieLists.list2,
+    actionList: state.pages.dashboard.actionList,
     // searched: state.movieLists.searched,
     // selectedMovie: state.selectedMovie,
 });

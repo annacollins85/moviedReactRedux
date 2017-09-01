@@ -9,23 +9,20 @@ const objectifyArray = (array, idKey = 'id') => {
 };
 
 const entitiesDefaultState = {
-  entities: {
-    movies: {}
-  }
+  movies: {}
 }
 
-// add discover movies -> add received movies to the db
-const entities = (state = entitiesDefaultState, action) => {
+const entitiesReducer = (state = entitiesDefaultState, action) => {
   switch (action.type) {
     case 'ADD_DISCOVER_MOVIES':
     case 'ADD_CATEGORY_MOVIES':
       return {
-        ...state.entities,
-        movies: {
-          ...state.entities.movies,
-          ...objectifyArray(action.movies)
+          ...state,
+          movies: {
+            ...state.movies,
+            ...objectifyArray(action.movies)
+          }
         }
-      }
     default:
       return state;
   }
@@ -44,8 +41,7 @@ const idPlease = (array) => {
   return array.map(movie => movie.id)
 }
 
-// add discover movies -> setting the boxOfficeList
-const pages = (state = pagesDefaultState, action) => {
+const pagesReducer = (state = pagesDefaultState, action) => {
   switch (action.type) {
     case 'ADD_DISCOVER_MOVIES':
       return {
@@ -70,8 +66,8 @@ const pages = (state = pagesDefaultState, action) => {
 }
 
 const reducers = combineReducers({
-  entities,
-  pages
+  entities: entitiesReducer,
+  pages: pagesReducer
 })
 
 export default reducers;
